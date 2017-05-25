@@ -10,7 +10,7 @@ public class GetOutOfBed : MonoBehaviour
     List<Transform> visitedPoints = new List<Transform>();
 
     Animator myAnim;
-    Vector3 currentPos;
+    Vector3 currentPos, targetPos;
 
     float noiseLevel;
 
@@ -18,6 +18,7 @@ public class GetOutOfBed : MonoBehaviour
     {
         myAnim = GetComponent<Animator>();
         currentPos = transform.position;
+        targetPos = currentPos;
     }
 
     private void Update()
@@ -26,6 +27,8 @@ public class GetOutOfBed : MonoBehaviour
         // if you move in the direction of the node, change position and animation state
         // if you've been to the node, take it out of the pool ("positions" array)
 
+        transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
+
         print(noiseLevel);
         if (noiseLevel >= maxNoiseLevel) print("too loud!");
         if (noiseLevel > 0) noiseLevel -= Time.deltaTime;
@@ -33,25 +36,25 @@ public class GetOutOfBed : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            transform.position = FindClosestPoint(Vector2.right);
+            targetPos = FindClosestPoint(Vector2.right);
             noiseLevel += movementNoise;
         }
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            transform.position = FindClosestPoint(Vector2.left);
+            targetPos = FindClosestPoint(Vector2.left);
             noiseLevel += movementNoise;
         }
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            transform.position = FindClosestPoint(Vector2.up);
+            targetPos = FindClosestPoint(Vector2.up);
             noiseLevel += movementNoise;
         }
 
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            transform.position = FindClosestPoint(Vector2.down);
+            targetPos = FindClosestPoint(Vector2.down);
             noiseLevel += movementNoise;
         }
     }
