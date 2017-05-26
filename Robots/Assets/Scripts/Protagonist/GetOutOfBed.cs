@@ -57,6 +57,7 @@ public class GetOutOfBed : MonoBehaviour
             partnerAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             Invoke("ChangePartnerColorBack", .5f);
         }
+        else partnerAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
 
         if (noiseLevel > 0) noiseLevel -= Time.deltaTime * noiseDecreaseRate;
         else noiseLevel = 0;
@@ -144,10 +145,5 @@ public class GetOutOfBed : MonoBehaviour
             return closestPoint.position;
         }
         else return currentPos;
-    }
-
-    void ChangePartnerColorBack()   // temp function
-    {
-        partnerAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
