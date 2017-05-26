@@ -2,23 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState { CUTSCENE, GAME, WON }
+
 public class GetOutOfBed : MonoBehaviour
 {
+    public delegate void Won();
+    public static event Won OnWon;
+
     [SerializeField] Transform[] points;
-    [SerializeField] float speed = 500, visionConeAngle = 90, maxNoiseLevel = 1, movementNoise = .5f;
+    [SerializeField] float speed = 500, visionConeAngle = 90, maxNoiseLevel = 1, movementNoise = .5f, noiseDecreaseRate = .5f;
+    [SerializeField] Animator partnerAnimator;
 
     List<Transform> visitedPoints = new List<Transform>();
 
     Animator myAnim;
+    GameState currentGameState = GameState.CUTSCENE;
     Vector3 currentPos, targetPos;
 
     float noiseLevel;
+
+    private void OnEnable()
+    {
+        DreamText.OnStartGame += WakeUp;
+    }
+    private void OnDisable()
+    {
+        DreamText.OnStartGame -= WakeUp;
+    }
 
     private void Start()
     {
         myAnim = GetComponent<Animator>();
         currentPos = transform.position;
         targetPos = currentPos;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -29,34 +48,63 @@ public class GetOutOfBed : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
 
-        print(noiseLevel);
-        if (noiseLevel >= maxNoiseLevel) print("too loud!");
-        if (noiseLevel > 0) noiseLevel -= Time.deltaTime;
+        //print(noiseLevel);
+
+        #region TODO - this noise level inication system is too bare-bones. we should replace it with one that allows the partner to react to consecutive disturbances
+        if (noiseLevel >= maxNoiseLevel)
+        {
+            print("too loud!");
+            partnerAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            Invoke("ChangePartnerColorBack", .5f);
+        }
+
+        if (noiseLevel > 0) noiseLevel -= Time.deltaTime * noiseDecreaseRate;
         else noiseLevel = 0;
+        #endregion
 
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (currentGameState == GameState.GAME)
         {
-            targetPos = FindClosestPoint(Vector2.right);
-            noiseLevel += movementNoise;
-        }
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                targetPos = FindClosestPoint(Vector2.right);
+                noiseLevel += movementNoise;
+            }
 
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            targetPos = FindClosestPoint(Vector2.left);
-            noiseLevel += movementNoise;
-        }
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                targetPos = FindClosestPoint(Vector2.left);
+                noiseLevel += movementNoise;
+            }
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            targetPos = FindClosestPoint(Vector2.up);
-            noiseLevel += movementNoise;
-        }
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                targetPos = FindClosestPoint(Vector2.up);
+                noiseLevel += movementNoise;
+            }
 
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            targetPos = FindClosestPoint(Vector2.down);
-            noiseLevel += movementNoise;
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                targetPos = FindClosestPoint(Vector2.down);
+                noiseLevel += movementNoise;
+            }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Finish")
+        {
+            if (OnWon != null) OnWon();
+            currentGameState = GameState.WON;
+            GetComponent<SpriteRenderer>().color = Color.green;
+            print("you're out of bed");
+        }
+    }
+
+    void WakeUp()
+    {
+        GetComponent<SpriteRenderer>().color = Color.yellow;
+        currentGameState = GameState.GAME;
     }
 
     Vector2 FindClosestPoint(Vector2 movementDirection)
@@ -96,5 +144,10 @@ public class GetOutOfBed : MonoBehaviour
             return closestPoint.position;
         }
         else return currentPos;
+    }
+
+    void ChangePartnerColorBack()   // temp function
+    {
+        partnerAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
