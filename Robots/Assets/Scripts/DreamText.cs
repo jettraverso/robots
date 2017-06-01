@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,7 @@ public class DreamText : MonoBehaviour
     public static event StartGame OnStartGame;
 
     [SerializeField] TextAsset textToParse;
-    [SerializeField] string[] dream01Lines, bootingUpLines, endOfDemoLines; // TODO - delete, replace with info from text file
+    [SerializeField] string[] bootingUpLines, endOfDemoLines; // TODO - delete, replace with info from text file
     [SerializeField] float timeBetweenLetters = .01f, fadeInTimer = 10; // TODO - delete timeBetweenLetters, replace with info from text file
     [SerializeField] Image panelImage;
     [SerializeField] AnimationCurve fadeCurve;
@@ -17,6 +16,8 @@ public class DreamText : MonoBehaviour
     string[] lines;
     Text myText;
     Color textColor;
+
+    bool pressingSpace;
 
     private void OnEnable()
     {
@@ -35,11 +36,13 @@ public class DreamText : MonoBehaviour
         myText = GetComponent<Text>();
         textColor = myText.color;
 
-        StartCoroutine(DreamCutscene01());
+        StartCoroutine(Cutscene01());
     }
 
     private void Update()
     {
+        pressingSpace = Input.GetKeyDown(KeyCode.Space);
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StopAllCoroutines();
@@ -56,52 +59,58 @@ public class DreamText : MonoBehaviour
         StartCoroutine(EndOfDemoCutscene());
     }
 
-    IEnumerator DreamCutscene01()
+    IEnumerator Cutscene01()
     {
         yield return new WaitForSeconds(1);
 
         // TODO - this sequence could be abbreviated into some kind of for/foreach loop,
         // if there were a system for associating a wait time with each string in lines
         // (since wait time will not always be the same, like it is here)
-        
-        StartCoroutine(ScrollText(lines, 0));
-        yield return new WaitForSeconds(3);
-        
-        StartCoroutine(ScrollText(lines, 1));
-        yield return new WaitForSeconds(5);
-        
-        StartCoroutine(ScrollText(lines, 2));
-        yield return new WaitForSeconds(5);
-        
-        StartCoroutine(ScrollText(lines, 3));
-        yield return new WaitForSeconds(5);
-        
-        StartCoroutine(ScrollText(lines, 4));
-        yield return new WaitForSeconds(5);
-        
-        StartCoroutine(ScrollText(lines, 5));
-        yield return new WaitForSeconds(3);
 
-        StartCoroutine(ScrollText(lines, 6));
-        yield return new WaitForSeconds(5);
+        for (int i = 0; i < lines.Length; i++)
+        {
+            StartCoroutine(ScrollText(lines, i));
+            while (!pressingSpace) yield return null;
+        }
+        
+        //StartCoroutine(ScrollText(lines, 0));
+        //yield return new WaitForSeconds(3);
+        
+        //StartCoroutine(ScrollText(lines, 1));
+        //yield return new WaitForSeconds(5);
+        
+        //StartCoroutine(ScrollText(lines, 2));
+        //yield return new WaitForSeconds(5);
+        
+        //StartCoroutine(ScrollText(lines, 3));
+        //yield return new WaitForSeconds(5);
+        
+        //StartCoroutine(ScrollText(lines, 4));
+        //yield return new WaitForSeconds(5);
+        
+        //StartCoroutine(ScrollText(lines, 5));
+        //yield return new WaitForSeconds(3);
 
-        StartCoroutine(ScrollText(lines, 7));
-        yield return new WaitForSeconds(5);
+        //StartCoroutine(ScrollText(lines, 6));
+        //yield return new WaitForSeconds(5);
+
+        //StartCoroutine(ScrollText(lines, 7));
+        //yield return new WaitForSeconds(5);
 
         #region delete lines one at a time. TODO - refactor
-        myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1] + "\n\n>  " + dream01Lines[2] + "\n\n>  " + dream01Lines[3] + "\n\n>  " + dream01Lines[4] + "\n\n>  " + dream01Lines[5] + "\n\n>  " + dream01Lines[6];
+        myText.text = ">  " + lines[0] + "\n\n>  " + lines[1] + "\n\n>  " + lines[2] + "\n\n>  " + lines[3] + "\n\n>  " + lines[4] + "\n\n>  " + lines[5] + "\n\n>  " + lines[6];
         yield return new WaitForSeconds(1);
-        myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1] + "\n\n>  " + dream01Lines[2] + "\n\n>  " + dream01Lines[3] + "\n\n>  " + dream01Lines[4] + "\n\n>  " + dream01Lines[5];
+        myText.text = ">  " + lines[0] + "\n\n>  " + lines[1] + "\n\n>  " + lines[2] + "\n\n>  " + lines[3] + "\n\n>  " + lines[4] + "\n\n>  " + lines[5];
         yield return new WaitForSeconds(1);
-        myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1] + "\n\n>  " + dream01Lines[2] + "\n\n>  " + dream01Lines[3] + "\n\n>  " + dream01Lines[4];
+        myText.text = ">  " + lines[0] + "\n\n>  " + lines[1] + "\n\n>  " + lines[2] + "\n\n>  " + lines[3] + "\n\n>  " + lines[4];
         yield return new WaitForSeconds(1);
-        myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1] + "\n\n>  " + dream01Lines[2] + "\n\n>  " + dream01Lines[3];
+        myText.text = ">  " + lines[0] + "\n\n>  " + lines[1] + "\n\n>  " + lines[2] + "\n\n>  " + lines[3];
         yield return new WaitForSeconds(1);
-        myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1] + "\n\n>  " + dream01Lines[2];
+        myText.text = ">  " + lines[0] + "\n\n>  " + lines[1] + "\n\n>  " + lines[2];
         yield return new WaitForSeconds(1);
-        myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1];
+        myText.text = ">  " + lines[0] + "\n\n>  " + lines[1];
         yield return new WaitForSeconds(1);
-        myText.text = ">  " + dream01Lines[0];
+        myText.text = ">  " + lines[0];
         yield return new WaitForSeconds(1);
         myText.text = ">  ";
         yield return new WaitForSeconds(2);
