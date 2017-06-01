@@ -63,21 +63,31 @@ public class DreamText : MonoBehaviour
         yield return new WaitForSeconds(3);
         
         StartCoroutine(ScrollText(dream01Lines, 1));
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         
         StartCoroutine(ScrollText(dream01Lines, 2));
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         
         StartCoroutine(ScrollText(dream01Lines, 3));
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         
         StartCoroutine(ScrollText(dream01Lines, 4));
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         
         StartCoroutine(ScrollText(dream01Lines, 5));
         yield return new WaitForSeconds(3);
 
+        StartCoroutine(ScrollText(dream01Lines, 6));
+        yield return new WaitForSeconds(5);
+
+        StartCoroutine(ScrollText(dream01Lines, 7));
+        yield return new WaitForSeconds(5);
+
         #region delete lines one at a time. TODO - refactor
+        myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1] + "\n\n>  " + dream01Lines[2] + "\n\n>  " + dream01Lines[3] + "\n\n>  " + dream01Lines[4] + "\n\n>  " + dream01Lines[5] + "\n\n>  " + dream01Lines[6];
+        yield return new WaitForSeconds(1);
+        myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1] + "\n\n>  " + dream01Lines[2] + "\n\n>  " + dream01Lines[3] + "\n\n>  " + dream01Lines[4] + "\n\n>  " + dream01Lines[5];
+        yield return new WaitForSeconds(1);
         myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1] + "\n\n>  " + dream01Lines[2] + "\n\n>  " + dream01Lines[3] + "\n\n>  " + dream01Lines[4];
         yield return new WaitForSeconds(1);
         myText.text = ">  " + dream01Lines[0] + "\n\n>  " + dream01Lines[1] + "\n\n>  " + dream01Lines[2] + "\n\n>  " + dream01Lines[3];
