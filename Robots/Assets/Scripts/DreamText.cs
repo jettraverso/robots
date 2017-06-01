@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,12 +9,13 @@ public class DreamText : MonoBehaviour
     public delegate void StartGame();
     public static event StartGame OnStartGame;
 
-    [SerializeField] string textFileName;
+    [SerializeField] string textFilePath = "Assets/TextFiles/.../Example.txt";
     [SerializeField] string[] dream01Lines, bootingUpLines, endOfDemoLines;
     [SerializeField] float timeBetweenLetters = .01f, fadeInTimer = 10;
     [SerializeField] Image panelImage;
     [SerializeField] AnimationCurve fadeCurve;
 
+    StreamReader reader;
     Text myText;
     Color textColor;
 
@@ -28,7 +30,8 @@ public class DreamText : MonoBehaviour
 
     private void Start()
     {
-        // use streamreader to split the text file into a string array
+        reader = new StreamReader(textFilePath);
+        // use reader to split the text file into a string array
 
         myText = GetComponent<Text>();
         textColor = myText.color;
