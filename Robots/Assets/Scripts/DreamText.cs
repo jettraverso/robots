@@ -17,8 +17,6 @@ public class DreamText : MonoBehaviour
     Text myText;
     Color textColor;
 
-    bool pressingSpace;
-
     private void OnEnable()
     {
         GetOutOfBed.OnWon += CallFadeOut;
@@ -41,14 +39,12 @@ public class DreamText : MonoBehaviour
 
     private void Update()
     {
-        pressingSpace = Input.GetKeyDown(KeyCode.Space);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StopAllCoroutines();
-            myText.text = "";
-            StartCoroutine(Fade(true));
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    StopAllCoroutines();
+        //    myText.text = "";
+        //    StartCoroutine(Fade(true));
+        //}
     }
 
     void CallFadeOut()
@@ -59,6 +55,12 @@ public class DreamText : MonoBehaviour
         StartCoroutine(EndOfDemoCutscene());
     }
 
+    IEnumerator WaitForInput()
+    {
+        while (!Input.GetKeyDown(KeyCode.Space)) yield return null;
+        yield return new WaitForEndOfFrame();
+    }
+
     IEnumerator Cutscene01()
     {
         yield return new WaitForSeconds(1);
@@ -66,11 +68,11 @@ public class DreamText : MonoBehaviour
         // TODO - this sequence could be abbreviated into some kind of for/foreach loop,
         // if there were a system for associating a wait time with each string in lines
         // (since wait time will not always be the same, like it is here)
-
+        
         for (int i = 0; i < lines.Length; i++)
         {
-            StartCoroutine(ScrollText(lines, i));
-            while (!pressingSpace) yield return null;
+            yield return StartCoroutine(ScrollText(lines, i));
+            yield return StartCoroutine(WaitForInput());
         }
         
         //StartCoroutine(ScrollText(lines, 0));
