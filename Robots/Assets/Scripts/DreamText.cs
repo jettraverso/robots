@@ -9,9 +9,9 @@ public class DreamText : MonoBehaviour
     public delegate void StartGame();
     public static event StartGame OnStartGame;
 
-    [SerializeField] string textFilePath = "Assets/TextFiles/.../Example.txt";
-    [SerializeField] string[] dream01Lines, bootingUpLines, endOfDemoLines;
-    [SerializeField] float timeBetweenLetters = .01f, fadeInTimer = 10;
+    [SerializeField] TextAsset textToParse;
+    [SerializeField] string[] dream01Lines, bootingUpLines, endOfDemoLines; // TODO - delete, replace with info from text file
+    [SerializeField] float timeBetweenLetters = .01f, fadeInTimer = 10; // TODO - delete timeBetweenLetters, replace with info from text file
     [SerializeField] Image panelImage;
     [SerializeField] AnimationCurve fadeCurve;
 
@@ -30,7 +30,7 @@ public class DreamText : MonoBehaviour
 
     private void Start()
     {
-        reader = new StreamReader(textFilePath);
+        reader = new StreamReader(textToParse.name);
         // use reader to split the text file into a string array
 
         myText = GetComponent<Text>();
