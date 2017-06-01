@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +14,7 @@ public class DreamText : MonoBehaviour
     [SerializeField] Image panelImage;
     [SerializeField] AnimationCurve fadeCurve;
 
-    StreamReader reader;
+    string[] lines;
     Text myText;
     Color textColor;
 
@@ -30,8 +29,8 @@ public class DreamText : MonoBehaviour
 
     private void Start()
     {
-        reader = new StreamReader(textToParse.name);
-        // use reader to split the text file into a string array
+        string wholeText = textToParse.text;
+        lines = wholeText.Split('\n');
 
         myText = GetComponent<Text>();
         textColor = myText.color;
@@ -65,28 +64,28 @@ public class DreamText : MonoBehaviour
         // if there were a system for associating a wait time with each string in lines
         // (since wait time will not always be the same, like it is here)
         
-        StartCoroutine(ScrollText(dream01Lines, 0));
+        StartCoroutine(ScrollText(lines, 0));
         yield return new WaitForSeconds(3);
         
-        StartCoroutine(ScrollText(dream01Lines, 1));
+        StartCoroutine(ScrollText(lines, 1));
         yield return new WaitForSeconds(5);
         
-        StartCoroutine(ScrollText(dream01Lines, 2));
+        StartCoroutine(ScrollText(lines, 2));
         yield return new WaitForSeconds(5);
         
-        StartCoroutine(ScrollText(dream01Lines, 3));
+        StartCoroutine(ScrollText(lines, 3));
         yield return new WaitForSeconds(5);
         
-        StartCoroutine(ScrollText(dream01Lines, 4));
+        StartCoroutine(ScrollText(lines, 4));
         yield return new WaitForSeconds(5);
         
-        StartCoroutine(ScrollText(dream01Lines, 5));
+        StartCoroutine(ScrollText(lines, 5));
         yield return new WaitForSeconds(3);
 
-        StartCoroutine(ScrollText(dream01Lines, 6));
+        StartCoroutine(ScrollText(lines, 6));
         yield return new WaitForSeconds(5);
 
-        StartCoroutine(ScrollText(dream01Lines, 7));
+        StartCoroutine(ScrollText(lines, 7));
         yield return new WaitForSeconds(5);
 
         #region delete lines one at a time. TODO - refactor
