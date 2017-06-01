@@ -8,6 +8,7 @@ public class DreamText : MonoBehaviour
     public delegate void StartGame();
     public static event StartGame OnStartGame;
 
+    [SerializeField] string textFileName;
     [SerializeField] string[] dream01Lines, bootingUpLines, endOfDemoLines;
     [SerializeField] float timeBetweenLetters = .01f, fadeInTimer = 10;
     [SerializeField] Image panelImage;
@@ -27,6 +28,8 @@ public class DreamText : MonoBehaviour
 
     private void Start()
     {
+        // use streamreader to split the text file into a string array
+
         myText = GetComponent<Text>();
         textColor = myText.color;
 
