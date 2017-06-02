@@ -36,8 +36,8 @@ public class GetOutOfBed : MonoBehaviour
         currentPos = transform.position;
         targetPos = currentPos;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()

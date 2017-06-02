@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class DreamText : MonoBehaviour
 {
@@ -8,16 +9,18 @@ public class DreamText : MonoBehaviour
     public static event StartGame OnStartGame;
 
     [SerializeField] TextAsset textToParse;
-    [SerializeField] string[] bootingUpLines, endOfDemoLines; // TODO - delete, replace with info from text file
+    //[SerializeField] string[] bootingUpLines, endOfDemoLines; // TODO - delete, replace with info from text file
     [SerializeField] float timeBetweenLetters = .01f, fadeInTimer = 10; // TODO - delete timeBetweenLetters, replace with info from text file
     [SerializeField] Image panelImage;
     [SerializeField] AnimationCurve fadeCurve;
+    [SerializeField] ScrollRect viewport;
+    [SerializeField] CanvasGroup canvasGroup;
 
     string[] lines;
     Text myText;
     Color textColor;
 
-    bool pressingSpace;
+    bool textPause, textComplete = false;
 
     private void OnEnable()
     {
@@ -31,19 +34,23 @@ public class DreamText : MonoBehaviour
     private void Start()
     {
         string wholeText = textToParse.text;
-        lines = wholeText.Split('\n');
+        lines = Regex.Split(wholeText, "\n|\r|\r\n");
 
         myText = GetComponent<Text>();
         textColor = myText.color;
+
+        //go to top of scroll window
+        viewport.verticalNormalizedPosition = 1f;
 
         StartCoroutine(Cutscene01());
     }
 
     private void Update()
     {
-        pressingSpace = Input.GetKeyDown(KeyCode.Space);
+        textPause = Input.GetKeyDown(KeyCode.Space);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        //start fadeout
+        if (textComplete)
         {
             StopAllCoroutines();
             myText.text = "";
@@ -61,7 +68,7 @@ public class DreamText : MonoBehaviour
 
     IEnumerator Cutscene01()
     {
-        yield return new WaitForSeconds(1);
+        //yield return new WaitForSeconds(1);
 
         // TODO - this sequence could be abbreviated into some kind of for/foreach loop,
         // if there were a system for associating a wait time with each string in lines
@@ -69,36 +76,21 @@ public class DreamText : MonoBehaviour
 
         for (int i = 0; i < lines.Length; i++)
         {
+            yield return new WaitForSeconds(1);
             StartCoroutine(ScrollText(lines, i));
-            while (!pressingSpace) yield return null;
+            while (!textPause) yield return null;
+
+            //scroll down after fifth line
+            if (i > 4)
+            {
+                viewport.verticalNormalizedPosition -= 0.05f;
+            }
+
+            if (i == lines.Length) textComplete = true;
         }
-        
-        //StartCoroutine(ScrollText(lines, 0));
-        //yield return new WaitForSeconds(3);
-        
-        //StartCoroutine(ScrollText(lines, 1));
-        //yield return new WaitForSeconds(5);
-        
-        //StartCoroutine(ScrollText(lines, 2));
-        //yield return new WaitForSeconds(5);
-        
-        //StartCoroutine(ScrollText(lines, 3));
-        //yield return new WaitForSeconds(5);
-        
-        //StartCoroutine(ScrollText(lines, 4));
-        //yield return new WaitForSeconds(5);
-        
-        //StartCoroutine(ScrollText(lines, 5));
-        //yield return new WaitForSeconds(3);
-
-        //StartCoroutine(ScrollText(lines, 6));
-        //yield return new WaitForSeconds(5);
-
-        //StartCoroutine(ScrollText(lines, 7));
-        //yield return new WaitForSeconds(5);
 
         #region delete lines one at a time. TODO - refactor
-        myText.text = ">  " + lines[0] + "\n\n>  " + lines[1] + "\n\n>  " + lines[2] + "\n\n>  " + lines[3] + "\n\n>  " + lines[4] + "\n\n>  " + lines[5] + "\n\n>  " + lines[6];
+        /*myText.text = ">  " + lines[0] + "\n\n>  " + lines[1] + "\n\n>  " + lines[2] + "\n\n>  " + lines[3] + "\n\n>  " + lines[4] + "\n\n>  " + lines[5] + "\n\n>  " + lines[6];
         yield return new WaitForSeconds(1);
         myText.text = ">  " + lines[0] + "\n\n>  " + lines[1] + "\n\n>  " + lines[2] + "\n\n>  " + lines[3] + "\n\n>  " + lines[4] + "\n\n>  " + lines[5];
         yield return new WaitForSeconds(1);
@@ -114,13 +106,15 @@ public class DreamText : MonoBehaviour
         yield return new WaitForSeconds(1);
         myText.text = ">  ";
         yield return new WaitForSeconds(2);
-        myText.text = "";
+        myText.text = "";*/
+
+
         #endregion
 
         yield return new WaitForSeconds(4);
 
-        #region boot up
-        myText.text += bootingUpLines[0];
+        #region boot up 
+        /*myText.text += bootingUpLines[0];
         myText.text += "\n\n";
         yield return new WaitForSeconds(5);
         myText.text += bootingUpLines[1];
@@ -183,6 +177,7 @@ public class DreamText : MonoBehaviour
         yield return new WaitForSeconds(.75f);
         myText.text = "";
         yield return new WaitForSeconds(3f);
+        */ 
         #endregion
 
         StartCoroutine(Fade(true));
@@ -192,14 +187,7 @@ public class DreamText : MonoBehaviour
     {
         yield return new WaitForSeconds(7);
 
-        myText.text = ">  ";
-        yield return new WaitForSeconds(2);
-        StartCoroutine(ScrollText(endOfDemoLines, 0));
-        yield return new WaitForSeconds(3);
-        StartCoroutine(ScrollText(endOfDemoLines, 1));
-        yield return new WaitForSeconds(3);
-        StartCoroutine(ScrollText(endOfDemoLines, 2));
-        yield return new WaitForSeconds(3);
+        //myText.text = ">  ";
 
         Color oldColor = myText.color;
 
@@ -223,12 +211,16 @@ public class DreamText : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenLetters);
         }
 
-        if (lineIndex < lines.Length - 1) myText.text += "\n\n>  ";
+        if (lineIndex < lines.Length - 1)
+        {
+            myText.text += "\n>  ";
+            textPause = true;
+        }
     }
 
     IEnumerator Fade(bool fadeIn)
     {
-        Color oldColor = panelImage.color;
+        /*Color oldColor = panelImage.color;
         Color newColor = fadeIn ? Color.clear : Color.black;
 
         float elapsedTime = 0;
@@ -240,7 +232,29 @@ public class DreamText : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        panelImage.color = newColor;
+        panelImage.color = newColor;*/
+
+        float oldAlpha = canvasGroup.alpha;
+        float newAlpha = fadeIn ? 0f : 1f;
+
+        float elapsedTime = 0;
+        while (elapsedTime < fadeInTimer)
+        {
+            var percentage = fadeCurve.Evaluate(elapsedTime / fadeInTimer);
+            if (oldAlpha > newAlpha)
+            {
+                canvasGroup.alpha = oldAlpha - percentage;
+            }
+            else
+            {
+                canvasGroup.alpha = oldAlpha + percentage;
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        canvasGroup.alpha = newAlpha;
+
         if (OnStartGame != null) OnStartGame();
     }
 }
