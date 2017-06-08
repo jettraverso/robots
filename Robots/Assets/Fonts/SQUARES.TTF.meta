@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 477f8aead6f7fe34485acf5ed1073694
+timeCreated: 1496934988
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: AlphaShapes squares
+  fontNames:
+  - AlphaShapes squares
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
