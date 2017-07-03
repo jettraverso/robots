@@ -1,0 +1,694 @@
+fileFormatVersion: 2
+guid: b7727f8ba041c7c40889901a7bd9ceb1
+timeCreated: 1498854587
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: characterSheet_0
+    21300002: characterSheet_1
+    21300004: characterSheet_2
+    21300006: characterSheet_3
+    21300008: characterSheet_4
+    21300010: characterSheet_5
+    21300012: characterSheet_6
+    21300014: characterSheet_7
+    21300016: characterSheet_8
+    21300018: characterSheet_9
+    21300020: characterSheet_10
+    21300022: characterSheet_11
+    21300024: characterSheet_12
+    21300026: characterSheet_13
+    21300028: characterSheet_14
+    21300030: characterSheet_15
+    21300032: characterSheet_16
+    21300034: characterSheet_17
+    21300036: characterSheet_18
+    21300038: characterSheet_19
+    21300040: characterSheet_20
+    21300042: characterSheet_21
+    21300044: characterSheet_22
+    21300046: characterSheet_23
+    21300048: characterSheet_24
+    21300050: characterSheet_25
+    21300052: characterSheet_26
+    21300054: characterSheet_27
+    21300056: characterSheet_28
+    21300058: characterSheet_29
+    21300060: characterSheet_30
+    21300062: characterSheet_31
+    21300064: characterSheet_32
+    21300066: characterSheet_33
+    21300068: characterSheet_34
+    21300070: characterSheet_35
+    21300072: characterSheet_36
+    21300074: characterSheet_37
+    21300076: characterSheet_38
+    21300078: characterSheet_39
+    21300080: characterSheet_40
+    21300082: characterSheet_41
+    21300084: characterSheet_42
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: characterSheet_0
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 251
+        width: 49
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_1
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 251
+        width: 48
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_2
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 252
+        width: 54
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_3
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 257
+        width: 66
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_4
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 271
+        width: 35
+        height: 44
+      alignment: 9
+      pivot: {x: 0.6565203, y: 0.85572815}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_5
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 264
+        width: 27
+        height: 53
+      alignment: 9
+      pivot: {x: 0.6159408, y: 0.83961976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_6
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 0
+        width: 142
+        height: 336
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_7
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 1
+        width: 103
+        height: 335
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_8
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 0
+        width: 120
+        height: 336
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_9
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 211
+        width: 37
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_10
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 215
+        width: 37
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_11
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 216
+        width: 33
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_12
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 214
+        width: 40
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_13
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 152
+        width: 35
+        height: 104
+      alignment: 9
+      pivot: {x: 0.5447205, y: 0.8762508}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_14
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 158
+        width: 40
+        height: 95
+      alignment: 9
+      pivot: {x: 0.42173997, y: 0.878944}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_15
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 203
+        width: 38
+        height: 43
+      alignment: 9
+      pivot: {x: 0.68535334, y: 0.9368013}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_16
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 195
+        width: 26
+        height: 56
+      alignment: 9
+      pivot: {x: 0.65050095, y: 0.8773259}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_17
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 206
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_18
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 209
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_19
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 208
+        width: 19
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_20
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 209
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_21
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 179
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_22
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 183
+        width: 37
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_23
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 180
+        width: 31
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_24
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 182
+        width: 37
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_25
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 143
+        width: 38
+        height: 41
+      alignment: 9
+      pivot: {x: 0.62356967, y: 0.8626694}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_26
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 178
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_27
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 137
+        width: 34
+        height: 43
+      alignment: 9
+      pivot: {x: 0.59207064, y: 0.9186011}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_28
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 173
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_29
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 174
+        width: 19
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_30
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 95
+        width: 57
+        height: 56
+      alignment: 9
+      pivot: {x: 0.9118955, y: 0.7934758}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_31
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 22
+        width: 91
+        height: 136
+      alignment: 9
+      pivot: {x: 0.34519976, y: 0.03389186}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_32
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 79
+        width: 45
+        height: 72
+      alignment: 9
+      pivot: {x: 0.16956855, y: 0.847823}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_33
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 62
+        width: 28
+        height: 81
+      alignment: 9
+      pivot: {x: 0.47205025, y: 0.8574846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_34
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 51
+        width: 31
+        height: 101
+      alignment: 9
+      pivot: {x: 0.34852946, y: 0.8719295}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_35
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 67
+        width: 54
+        height: 53
+      alignment: 9
+      pivot: {x: 0.61594135, y: 0.91345}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_36
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 61
+        width: 43
+        height: 55
+      alignment: 9
+      pivot: {x: 0.57280076, y: 0.94110286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_37
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 29
+        width: 53
+        height: 59
+      alignment: 9
+      pivot: {x: 0.8100874, y: 0.8979332}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_38
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 8
+        width: 55
+        height: 65
+      alignment: 9
+      pivot: {x: 0.82727, y: 0.909361}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_39
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 13
+        width: 41
+        height: 42
+      alignment: 9
+      pivot: {x: 0.7099669, y: 0.76086754}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_40
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 9
+        width: 28
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5000011, y: 0.86956173}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_41
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 9
+        width: 40
+        height: 34
+      alignment: 9
+      pivot: {x: 0.67608565, y: 0.91431874}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: characterSheet_42
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 5
+        width: 29
+        height: 35
+      alignment: 9
+      pivot: {x: 0.6889038, y: 0.9024804}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
