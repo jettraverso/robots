@@ -2,15 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState { CUTSCENE, GAME, WON }
+
 public class GetOutOfBed_MouseMovement : MonoBehaviour
 {
+    public delegate void Won();
+    public static event Won OnWon;
+
     [SerializeField] Animator lumiAnim;
     [SerializeField] float maxNoiseLevel = 1, movementNoise = .05f, noiseDecreaseRate = .5f;
 
     Animator roanAnim;
+    GameState currentGameState = GameState.CUTSCENE;
     float mouseMovement, noiseLevel;
     int jostles;
     bool canJostle = true;
+
+    private void OnEnable()
+    {
+        DreamText.OnStartGame += WakeUp;
+    }
+    private void OnDisable()
+    {
+        DreamText.OnStartGame -= WakeUp;
+    }
 
     private void Start()
     {
@@ -19,11 +34,16 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
 
     private void Update()
     {
+        if (currentGameState == GameState.GAME) UpdatePlayerMovement();
+        else roanAnim.speed = 0;
+    }
+
+    void UpdatePlayerMovement()
+    {
         mouseMovement = Mathf.Abs(Input.GetAxis("Mouse X") + Input.GetAxis("Mouse Y"));
         roanAnim.speed = mouseMovement;
         noiseLevel = mouseMovement;
 
-        #region TODO - this noise level inication system is too bare-bones. we should replace it with one that allows the partner to react to consecutive disturbances
         if (noiseLevel >= maxNoiseLevel)
         {
             print("too loud!");
@@ -36,16 +56,20 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
             lumiAnim.SetInteger("Jostles", jostles);
         }
 
-        //if (mouseMovement > 0) noiseLevel += movementNoise;
-        //if (noiseLevel > 0) noiseLevel -= Time.deltaTime * noiseDecreaseRate;
-        //else noiseLevel = 0;
-        #endregion
-
-        print(noiseLevel);
+        if (roanAnim.GetCurrentAnimatorStateInfo(0).IsName("Roan_OutOfBed"))
+        {
+            currentGameState = GameState.WON;
+            if (OnWon != null) OnWon();
+        }
     }
 
     void CoolDown()
     {
         canJostle = true;
+    }
+
+    void WakeUp()
+    {
+        currentGameState = GameState.GAME;
     }
 }

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { CUTSCENE, GAME, WON }
-
 public class GetOutOfBed : MonoBehaviour
 {
     public delegate void Won();

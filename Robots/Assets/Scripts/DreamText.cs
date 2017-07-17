@@ -10,7 +10,7 @@ public class DreamText : MonoBehaviour
 
     [SerializeField] TextAsset textToParse;
     //[SerializeField] string[] bootingUpLines, endOfDemoLines; // TODO - delete, replace with info from text file
-    [SerializeField] float timeBetweenLetters = .01f, fadeInTimer = 10; // TODO - delete timeBetweenLetters, replace with info from text file
+    [SerializeField] float timeBetweenLetters = .01f, fadeInTimer = 10, endPause = 1; // TODO - delete timeBetweenLetters, replace with info from text file
     [SerializeField] Image panelImage;
     [SerializeField] AnimationCurve fadeCurve;
     [SerializeField] ScrollRect viewport;
@@ -24,11 +24,11 @@ public class DreamText : MonoBehaviour
 
     private void OnEnable()
     {
-        GetOutOfBed.OnWon += CallFadeOut;
+        GetOutOfBed_MouseMovement.OnWon += CallFadeOut;
     }
     private void OnDisable()
     {
-        GetOutOfBed.OnWon -= CallFadeOut;
+        GetOutOfBed_MouseMovement.OnWon -= CallFadeOut;
     }
 
     private void Start()
@@ -74,6 +74,7 @@ public class DreamText : MonoBehaviour
         // if there were a system for associating a wait time with each string in lines
         // (since wait time will not always be the same, like it is here)
 
+        /*
         for (int i = 0; i < lines.Length; i++)
         {
             yield return new WaitForSeconds(1);
@@ -88,6 +89,7 @@ public class DreamText : MonoBehaviour
 
             if (i == lines.Length) textComplete = true;
         }
+        */
 
         #region delete lines one at a time. TODO - refactor
         /*myText.text = ">  " + lines[0] + "\n\n>  " + lines[1] + "\n\n>  " + lines[2] + "\n\n>  " + lines[3] + "\n\n>  " + lines[4] + "\n\n>  " + lines[5] + "\n\n>  " + lines[6];
@@ -111,7 +113,7 @@ public class DreamText : MonoBehaviour
 
         #endregion
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(endPause);
 
         #region boot up 
         /*myText.text += bootingUpLines[0];
