@@ -18,6 +18,8 @@ public class DreamText_02 : MonoBehaviour
     {
         foreach (Transform t in dreamTextNodes) t.GetComponent<TextMesh>().color = outOfFocusColor;
         nodeBeingFocusedOn = dreamTextNodes[0];
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -33,7 +35,7 @@ public class DreamText_02 : MonoBehaviour
 
         if (canControlMovement)
         {
-            transform.position = Vector3.Lerp(transform.position, mousePosition, lerpSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, mousePosition, movementSpeed * Time.deltaTime);
 
             if (mouseMovement > mouseMovementThreshold)
             {
@@ -48,7 +50,6 @@ public class DreamText_02 : MonoBehaviour
         else
         {
             transform.position = Vector3.Lerp(transform.position, FindClosestNode().position, lerpSpeed * Time.deltaTime);
-            print(FindClosestNode().name);
 
             if (Vector3.Distance(transform.position, FindClosestNode().position) < closestNodeProximity)
             {
@@ -93,8 +94,7 @@ public class DreamText_02 : MonoBehaviour
                 distanceToClosestNode = distanceToNode;
             }
         }
-        if (dreamTextNodes.Count > 0) return closestNode;
-        else return transform;
+        return closestNode;
     }
 
     IEnumerator DeactivateNode(Transform previousNode)
