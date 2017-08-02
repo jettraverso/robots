@@ -6,6 +6,7 @@ public enum GameState { CUTSCENE, GAME, WON }
 
 public class GetOutOfBed_MouseMovement : MonoBehaviour
 {
+    // when the player wins, these events are called
     public delegate void Won();
     public static event Won OnWon;
 
@@ -13,19 +14,10 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
     [SerializeField] float maxNoiseLevel = 1, movementNoise = .05f, noiseDecreaseRate = .5f;
 
     Animator roanAnim;
-    GameState currentGameState = GameState.CUTSCENE;
+    GameState currentGameState = GameState.GAME;
     float mouseMovement, noiseLevel;
     int jostles;
     bool canJostle = true;
-
-    private void OnEnable()
-    {
-        DreamText.OnStartGame += WakeUp;
-    }
-    private void OnDisable()
-    {
-        DreamText.OnStartGame -= WakeUp;
-    }
 
     private void Start()
     {
@@ -34,14 +26,23 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
 
     private void Update()
     {
+        // if the player is permitted to move, move
         if (currentGameState == GameState.GAME) UpdatePlayerMovement();
+
+        // else, don't move
         else roanAnim.speed = 0;
     }
 
     void UpdatePlayerMovement()
     {
+        // mouse movement is the absolute combined values of both mouse axes -
+        // this means it doesn't matter in which direction the player is moving the mouse
         mouseMovement = Mathf.Abs(Input.GetAxis("Mouse X") + Input.GetAxis("Mouse Y"));
+
+        // animation speed is bound to movement, like SuperHot
         roanAnim.speed = mouseMovement;
+
+        #region the simple noise gauge is also bound to movement
         noiseLevel = mouseMovement;
 
         if (noiseLevel >= maxNoiseLevel)
@@ -51,14 +52,22 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
             {
                 jostles++;
                 canJostle = false;
+
+                // wait for the mouse to stop moving
                 Invoke("CoolDown", noiseDecreaseRate);
             }
+
+            // Lumi's various animations are triggered by an integer called Jostles
             lumiAnim.SetInteger("Jostles", jostles);
         }
+        #endregion
 
+        // if the empty "Roan_OutOfBed" animation is triggered, Roan is out of bed and the minigame is over
         if (roanAnim.GetCurrentAnimatorStateInfo(0).IsName("Roan_OutOfBed"))
         {
             currentGameState = GameState.WON;
+
+            // broadcast win event
             if (OnWon != null) OnWon();
         }
     }
@@ -66,10 +75,5 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
     void CoolDown()
     {
         canJostle = true;
-    }
-
-    void WakeUp()
-    {
-        currentGameState = GameState.GAME;
     }
 }
