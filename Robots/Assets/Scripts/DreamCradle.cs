@@ -17,24 +17,12 @@ public class DreamCradle : MonoBehaviour
 
     void story_OnOutput(StoryOutput output)
     {
-        //Debug.Log(output.Text);
-        //StoryText.text = output.Text;
+        if (output is StoryText) StoryText.text = output.Text;
+        else if (output is StoryLink) LinkText.text = output.Text;
+    }
 
-        if (output is StoryText)
-        {
-            StoryText.text = output.Text;
-        }
-        else if (output is StoryLink)
-        {
-            LinkText.text = output.Text;
-        }
-        else if (output is LineBreak)
-        {
-
-        }
-        else if (output is OutputGroup)
-        {
-
-        }
+    public void OnButtonClicked()
+    {
+        story.DoLink(LinkText.text);
     }
 }
