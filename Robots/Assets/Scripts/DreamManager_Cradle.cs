@@ -43,8 +43,14 @@ public class DreamManager_Cradle : MonoBehaviour
 
     void story_OnOutput(StoryOutput output)
     {
-        // print the current story text to the node being focused on
-        if (output is StoryText) nodeBeingFocusedOn.GetComponent<TextMesh>().text = output.Text;
+        List<StoryLink> currentLinks = new List<StoryLink>();
+        foreach (StoryLink o in story.GetCurrentLinks())
+        {
+            currentLinks.Add(o);
+        }
+
+            // print the current story text to the node being focused on
+            if (output is StoryText) nodeBeingFocusedOn.GetComponent<TextMesh>().text = output.Text;
 
         // print the same link text to every other node
         // TODO this treats all links as the same - we need to differentiate between the links,
@@ -53,8 +59,30 @@ public class DreamManager_Cradle : MonoBehaviour
         // when I tried to fill each node's text field with the text of an individual passage)
         else if (output is StoryLink)
         {
-            foreach (TextMesh t in dreamTextNodes)
-                if (t.transform != nodeBeingFocusedOn) t.text = output.Text;
+            for (int i = 0; i < currentLinks.Count; i++)
+            {
+                dreamTextNodes[i + 1].text = currentLinks[i].Text;
+            }
+
+            //foreach (TextMesh t in dreamTextNodes)
+            //{
+
+            //        //if (t.transform != nodeBeingFocusedOn)
+            //        //{
+            //        //    t.text = output.Text;
+            //        //}
+            //}
+
+            //Cycle through available links -> foreach storyLink
+            //foreach (StoryOutput o in story.GetCurrentLinks())
+            //{
+            //    //proof that o is all current links
+            //    Debug.Log(o.Text);
+
+            //    //attach to text mesh
+
+            //}
+
         }
     }
 
