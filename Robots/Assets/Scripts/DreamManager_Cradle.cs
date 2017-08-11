@@ -14,14 +14,21 @@ public class DreamManager_Cradle : MonoBehaviour
     [SerializeField] Color outOfFocusColor = Color.gray, InFocusColor = Color.white;
 
     Transform nodeBeingFocusedOn, nodeToDisappear;
-    Vector3 currentPosition, mousePosition;
+    Vector3 mousePosition;
     float mouseMovement;
+    int focalNodeIndex;
     bool canControlMovement = true, canFadeText, dreamComplete;
 
     private void Start()
     {
-        // all nodes start as vague and blurry/blotchy shapes
-        foreach (TextMesh t in dreamTextNodes) t.color = outOfFocusColor;
+        for (int i = 0; i < dreamTextNodes.Count; i++)
+        {
+            // all nodes start as vague and blurry/blotchy shapes
+            dreamTextNodes[i].color = outOfFocusColor;
+
+            // all nodes are populated with text from the story
+            dreamTextNodes[i].text = "*";
+        }
 
         // except the first node in the list
         nodeBeingFocusedOn = dreamTextNodes[0].transform;
@@ -87,6 +94,8 @@ public class DreamManager_Cradle : MonoBehaviour
         }
     }
 
+    
+
     void UpdateMovement()
     {
         mouseMovement = Input.GetAxis("Mouse X") + Input.GetAxis("Mouse Y");
@@ -101,8 +110,10 @@ public class DreamManager_Cradle : MonoBehaviour
             // this if statement gives the mouse a dead zone, defined by the mouseMovementDeadZone inspector variable
             if (mouseMovement > mouseMovementDeadZone)
             {
-                // if the player comes in range of a node
-                if (Vector3.Distance(transform.position, FindClosestNode().position) < range)
+                // if the player comes in range of a node and the player won't be skipping ahead in the story,
+                // lock movement
+                if (Vector3.Distance(transform.position, FindClosestNode().position) < range &&
+                ClosestNodeIsNextNodeInStory())
                     canControlMovement = false;
 
                 // if the player is leaving a node behind, deactivate it
@@ -136,10 +147,16 @@ public class DreamManager_Cradle : MonoBehaviour
 
     void FocusOnText()
     {
+        print("should only be called when the player can focus on text");
+
         // the node being focused on is the closest one to this gameObject
         nodeBeingFocusedOn = FindClosestNode().transform;
 
+        for (int i = 0; i < dreamTextNodes.Count; i++)
+            if (nodeBeingFocusedOn.GetComponent<TextMesh>() == dreamTextNodes[i]) focalNodeIndex = i;
+
         // when the node is being focused on, that is the same as clicking on its link in Twine
+        // TODO this is problematic, because it changes the link text when the node is focused on
         string nodeText = nodeBeingFocusedOn.GetComponent<TextMesh>().text;
         if (story.HasLink(nodeText)) story.DoLink(nodeText);
 
@@ -166,19 +183,32 @@ public class DreamManager_Cradle : MonoBehaviour
         canFadeText = true;
     }
 
+    bool ClosestNodeIsNextNodeInStory()
+    {
+        TextMesh closestNodeText = FindClosestNode().GetComponent<TextMesh>();
+
+        // if the closest node is the first node in the list (they get deleted from this list
+        // as the player finishes reading them), return true
+        // TODO this does not accommodate branching
+        if (closestNodeText == dreamTextNodes[0]) return true;
+        else return false;
+    }
+
     Transform FindClosestNode()
     {
         // I'm not going to comment this function right now, for brevity -
         // its purpose is very straightforward, it simply locates the node closest to this gameObject
 
-        currentPosition = transform.position;
+        Vector2 currentPosition = transform.position;
         Transform closestNode = null;
         float distanceToClosestNode = Mathf.Infinity;
 
         for (int i = 0; i < dreamTextNodes.Count; i++)
         {
-            Vector2 NodeDirection = dreamTextNodes[i].transform.position - currentPosition;
-            float distanceToNode = Vector2.Distance(dreamTextNodes[i].transform.position, currentPosition);
+            Vector2 nodePosition = new Vector2(dreamTextNodes[i].transform.position.x, dreamTextNodes[i].transform.position.y);
+
+            Vector2 NodeDirection = nodePosition - currentPosition;
+            float distanceToNode = Vector2.Distance(nodePosition, currentPosition);
 
             if (distanceToNode < distanceToClosestNode)
             {

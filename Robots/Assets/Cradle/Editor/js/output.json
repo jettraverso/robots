@@ -1,10 +1,5 @@
 {
-    "console": [
-        {
-            "type": "message",
-            "value": "Loaded the built-in macros."
-        }
-    ],
+    "console": [],
     "result": {
         "passages": [
             {
@@ -13,29 +8,17 @@
                 "Tags": "",
                 "Tokens": [
                     {
-                        "text": "This is the start of a passage.",
-                        "type": "text"
-                    },
-                    {
-                        "text": "\n",
-                        "type": "br"
-                    },
-                    {
-                        "text": "\n",
-                        "type": "br"
-                    },
-                    {
-                        "innerText": "link-goto:\"Go to work\",\"GoToWork\"",
+                        "innerText": "link-goto:\"I had a dream last night.\",\"LastNight\"",
                         "name": "linkgoto",
-                        "text": "(link-goto:\"Go to work\",\"GoToWork\")",
+                        "text": "(link-goto:\"I had a dream last night.\",\"LastNight\")",
                         "tokens": [
                             {
                                 "text": "link-goto:",
                                 "type": "macroName"
                             },
                             {
-                                "innerText": "Go to work",
-                                "text": "\"Go to work\"",
+                                "innerText": "I had a dream last night.",
+                                "text": "\"I had a dream last night.\"",
                                 "type": "string"
                             },
                             {
@@ -43,38 +26,8 @@
                                 "type": "comma"
                             },
                             {
-                                "innerText": "GoToWork",
-                                "text": "\"GoToWork\"",
-                                "type": "string"
-                            }
-                        ],
-                        "type": "macro"
-                    },
-                    {
-                        "text": "\n",
-                        "type": "br"
-                    },
-                    {
-                        "innerText": "link-goto:\"Go to bed\",\"GoToBed\"",
-                        "name": "linkgoto",
-                        "text": "(link-goto:\"Go to bed\",\"GoToBed\")",
-                        "tokens": [
-                            {
-                                "text": "link-goto:",
-                                "type": "macroName"
-                            },
-                            {
-                                "innerText": "Go to bed",
-                                "text": "\"Go to bed\"",
-                                "type": "string"
-                            },
-                            {
-                                "text": ",",
-                                "type": "comma"
-                            },
-                            {
-                                "innerText": "GoToBed",
-                                "text": "\"GoToBed\"",
+                                "innerText": "LastNight",
+                                "text": "\"LastNight\"",
                                 "type": "string"
                             }
                         ],
@@ -83,23 +36,269 @@
                 ]
             },
             {
-                "Name": "GoToWork",
+                "Name": "LastNight",
                 "Pid": "2",
                 "Tags": "",
                 "Tokens": [
                     {
-                        "text": "I'm at work!",
+                        "text": "I was taking my usual route to the office, passing by the Pauly’s Pizza Printer to say “hi” to the bots. When I looked through the window none of them were there.",
                         "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "innerText": "link-goto:\"Walking\",\"Walking\"",
+                        "name": "linkgoto",
+                        "text": "(link-goto:\"Walking\",\"Walking\")",
+                        "tokens": [
+                            {
+                                "text": "link-goto:",
+                                "type": "macroName"
+                            },
+                            {
+                                "innerText": "Walking",
+                                "text": "\"Walking\"",
+                                "type": "string"
+                            },
+                            {
+                                "text": ",",
+                                "type": "comma"
+                            },
+                            {
+                                "innerText": "Walking",
+                                "text": "\"Walking\"",
+                                "type": "string"
+                            }
+                        ],
+                        "type": "macro"
                     }
                 ]
             },
             {
-                "Name": "GoToBed",
+                "Name": "Walking",
                 "Pid": "3",
                 "Tags": "",
                 "Tokens": [
                     {
-                        "text": "I'm in bed!",
+                        "text": "For a moment I thought that was odd, but then I remembered that the bots usually get there in the afternoon so it made sense. ",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "I peered through the glass to see if Pauly was in prepping toppings, but the restaurant was empty. Pauly is usually in by the time I go to work.",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "innerText": "link-goto:\"The lights were on, yet no one was there.\",\"Lights\"",
+                        "name": "linkgoto",
+                        "text": "(link-goto:\"The lights were on, yet no one was there.\",\"Lights\")",
+                        "tokens": [
+                            {
+                                "text": "link-goto:",
+                                "type": "macroName"
+                            },
+                            {
+                                "innerText": "The lights were on, yet no one was there.",
+                                "text": "\"The lights were on, yet no one was there.\"",
+                                "type": "string"
+                            },
+                            {
+                                "text": ",",
+                                "type": "comma"
+                            },
+                            {
+                                "innerText": "Lights",
+                                "text": "\"Lights\"",
+                                "type": "string"
+                            }
+                        ],
+                        "type": "macro"
+                    }
+                ]
+            },
+            {
+                "Name": "Lights",
+                "Pid": "4",
+                "Tags": "",
+                "Tokens": [
+                    {
+                        "text": "I kept walking and the clouds seemed to change, they were churning and swirling restlessly, ready to burst.",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "It began to rain and I ducked under an awning to look for my umbrella. ",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "The edges of my feet that were not protected by the awning began to oxidize, this layer of rust crept up towards my ",
+                        "type": "text"
+                    },
+                    {
+                        "innerText": "link-goto:\"ankle joints.\",\"Ankles\"",
+                        "name": "linkgoto",
+                        "text": "(link-goto:\"ankle joints.\",\"Ankles\")",
+                        "tokens": [
+                            {
+                                "text": "link-goto:",
+                                "type": "macroName"
+                            },
+                            {
+                                "innerText": "ankle joints.",
+                                "text": "\"ankle joints.\"",
+                                "type": "string"
+                            },
+                            {
+                                "text": ",",
+                                "type": "comma"
+                            },
+                            {
+                                "innerText": "Ankles",
+                                "text": "\"Ankles\"",
+                                "type": "string"
+                            }
+                        ],
+                        "type": "macro"
+                    }
+                ]
+            },
+            {
+                "Name": "Ankles",
+                "Pid": "5",
+                "Tags": "",
+                "Tokens": [
+                    {
+                        "text": "I pushed my bag away from the edge of the awning and pulled my body towards it as the rust grew up my legs, locking them in place.",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "I scrambled through my bag looking for my umbrella as the splotches of orange and red thickened ",
+                        "type": "text"
+                    },
+                    {
+                        "innerText": "link-goto:\"over my waist.\",\"Waist\"",
+                        "name": "linkgoto",
+                        "text": "(link-goto:\"over my waist.\",\"Waist\")",
+                        "tokens": [
+                            {
+                                "text": "link-goto:",
+                                "type": "macroName"
+                            },
+                            {
+                                "innerText": "over my waist.",
+                                "text": "\"over my waist.\"",
+                                "type": "string"
+                            },
+                            {
+                                "text": ",",
+                                "type": "comma"
+                            },
+                            {
+                                "innerText": "Waist",
+                                "text": "\"Waist\"",
+                                "type": "string"
+                            }
+                        ],
+                        "type": "macro"
+                    }
+                ]
+            },
+            {
+                "Name": "Waist",
+                "Pid": "6",
+                "Tags": "",
+                "Tokens": [
+                    {
+                        "text": "The awning was gone and as the rain plodded against my decaying frame, I saw a face in the restlessly churning clouds stare coldly at me.",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "Its features shifted between looking like my boss, the media mogul, and the politician; but they all had the same cold, spiteful ",
+                        "type": "text"
+                    },
+                    {
+                        "innerText": "link-goto:\"eyes.\",\"Eyes\"",
+                        "name": "linkgoto",
+                        "text": "(link-goto:\"eyes.\",\"Eyes\")",
+                        "tokens": [
+                            {
+                                "text": "link-goto:",
+                                "type": "macroName"
+                            },
+                            {
+                                "innerText": "eyes.",
+                                "text": "\"eyes.\"",
+                                "type": "string"
+                            },
+                            {
+                                "text": ",",
+                                "type": "comma"
+                            },
+                            {
+                                "innerText": "Eyes",
+                                "text": "\"Eyes\"",
+                                "type": "string"
+                            }
+                        ],
+                        "type": "macro"
+                    }
+                ]
+            },
+            {
+                "Name": "Eyes",
+                "Pid": "7",
+                "Tags": "",
+                "Tokens": [
+                    {
+                        "text": "The rust was up to my shoulders, grounding my body. ",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "I looked desperately for anyone to help, but there was no one.",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "I was alone.",
                         "type": "text"
                     }
                 ]
