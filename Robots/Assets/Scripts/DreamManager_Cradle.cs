@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Cradle;
 
 public class DreamManager_Cradle : MonoBehaviour
@@ -9,7 +10,7 @@ public class DreamManager_Cradle : MonoBehaviour
     [SerializeField] List<TextMesh> dreamTextNodes;
     [SerializeField] float movementSpeed = .5f, lerpSpeed = 2, range = 8,
         mouseMovementDeadZone = .2f, disappearTimer = 2, coolDownTime = 1,
-        focalNodeZValue = 0, closestNodeProximity = .25f;
+        focalNodeZValue = 0, closestNodeProximity = .25f, fadeOutTime = 3;
     [SerializeField] Color outOfFocusColor = Color.gray, InFocusColor = Color.white;
 
     Transform nodeBeingFocusedOn, nodeToDisappear;
@@ -185,7 +186,13 @@ public class DreamManager_Cradle : MonoBehaviour
                 distanceToClosestNode = distanceToNode;
             }
         }
-        return closestNode;
+        if (closestNode != null) return closestNode;
+        else
+        {
+            // if there are no more nodes left, change scene
+            StartCoroutine(ChangeScene());
+            return nodeToDisappear;
+        }
     }
 
     IEnumerator DeactivateNode(Transform previousNode)
@@ -211,5 +218,17 @@ public class DreamManager_Cradle : MonoBehaviour
 
         // remove the node from the pool of interactable nodes
         dreamTextNodes.Remove(previousNode.GetComponent<TextMesh>());
+    }
+
+    IEnumerator ChangeScene()
+    {
+        // can no longer control movement
+        canControlMovement = false;
+
+        // wait for node to disappear
+        yield return new WaitForSeconds(disappearTimer);
+
+        // change scene
+        SceneManager.LoadScene("WakeUp_Day1");
     }
 }

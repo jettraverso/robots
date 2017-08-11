@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { CUTSCENE, GAME, WON }
+// TODO change this to an IControllable interface, because there will be lots of Roan scripts
+// that we will need to tell when they can be controlled by the player
+public enum GameState { WAKING_UP, GAME, WON }
 
 public class GetOutOfBed_MouseMovement : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
     [SerializeField] float maxNoiseLevel = 1, movementNoise = .05f, noiseDecreaseRate = .5f;
 
     Animator roanAnim;
-    GameState currentGameState = GameState.GAME;
+    GameState currentGameState = GameState.WAKING_UP;
     float mouseMovement, noiseLevel;
     int jostles;
     bool canJostle = true;
@@ -75,5 +77,10 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
     void CoolDown()
     {
         canJostle = true;
+    }
+
+    public void ChangeState(GameState state)
+    {
+        currentGameState = state;
     }
 }
