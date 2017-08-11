@@ -16,7 +16,7 @@ public class DreamManager_Cradle : MonoBehaviour
     Transform nodeBeingFocusedOn, nodeToDisappear;
     Vector3 currentPosition, mousePosition;
     float mouseMovement;
-    bool canControlMovement = true, canFadeText;
+    bool canControlMovement = true, canFadeText, dreamComplete;
 
     private void Start()
     {
@@ -93,7 +93,7 @@ public class DreamManager_Cradle : MonoBehaviour
         mousePosition += new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
 
         // if the player can move the camera around with the mouse
-        if (canControlMovement)
+        if (canControlMovement && !dreamComplete)
         {
             // move the dream manager (the camera lerps to the position of the dream manager's x and z axes)
             transform.position = Vector3.Lerp(transform.position, mousePosition, movementSpeed * Time.deltaTime);
@@ -222,8 +222,7 @@ public class DreamManager_Cradle : MonoBehaviour
 
     IEnumerator ChangeScene()
     {
-        // can no longer control movement
-        canControlMovement = false;
+        dreamComplete = true;
 
         // wait for node to disappear
         yield return new WaitForSeconds(disappearTimer);
