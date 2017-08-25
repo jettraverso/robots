@@ -51,6 +51,13 @@ public class DreamManager_Cradle : MonoBehaviour
 
     void story_OnOutput(StoryOutput output)
     {
+        if (output is StoryText)
+        {
+            dreamTextNodes[0].text += output.Text;
+
+        }
+
+
         List<StoryLink> currentLinks = new List<StoryLink>();
         foreach (StoryLink o in story.GetCurrentLinks())
         {
@@ -67,10 +74,11 @@ public class DreamManager_Cradle : MonoBehaviour
         // when I tried to fill each node's text field with the text of an individual passage)
         else if (output is StoryLink)
         {
-            for (int i = 0; i < currentLinks.Count; i++)
-            {
-                dreamTextNodes[i + 1].text = currentLinks[i].Text;
-            }
+
+            //for (int i = 0; i < currentLinks.Count; i++)
+            //{
+            //    dreamTextNodes[i + 1].text = currentLinks[i].Text;
+            //}
 
             //foreach (TextMesh t in dreamTextNodes)
             //{

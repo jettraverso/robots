@@ -8,7 +8,15 @@
                 "Tags": "",
                 "Tokens": [
                     {
-                        "text": "I can feel the soft weight of Lumi's arm across my chest.",
+                        "text": "I can feel the soft weight of ",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "Lumi's arm across my chest.",
                         "type": "text"
                     },
                     {
@@ -20,8 +28,20 @@
                         "type": "br"
                     },
                     {
-                        "text": "I shut off my visual systems shortly after I feel their weight and warmth against ",
+                        "text": "I shut off my visual systems shortly after ",
                         "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "I feel their weight and warmth against ",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
                     },
                     {
                         "innerText": "link-goto:\"my mechanical frame.\",\"frame\"",
@@ -57,7 +77,31 @@
                 "Tags": "",
                 "Tokens": [
                     {
-                        "text": "When I was younger bot, I would never let these systems go to sleep. I'd rather recharge myself seven times a day than be caught in total darkness. It was the first night ",
+                        "text": "When I was younger bot, I would never let",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "these systems go to sleep. I'd rather recharge ",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "myself seven times a day than be caught in total darkness. ",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "It was the first night ",
                         "type": "text"
                     },
                     {
@@ -87,7 +131,15 @@
                         "type": "macro"
                     },
                     {
-                        "text": " that I shut them down.",
+                        "text": " ",
+                        "type": "text"
+                    },
+                    {
+                        "text": "\n",
+                        "type": "br"
+                    },
+                    {
+                        "text": "that I shut them down.",
                         "type": "text"
                     }
                 ]
