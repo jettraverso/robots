@@ -6,24 +6,30 @@ using UnityEngine;
 // that we will need to tell when they can be controlled by the player
 public enum GameState { WAKING_UP, GAME, WON }
 
+// which point of view are we seeing Roan and Lumi's bed from?
+public enum POV { TOP_VIEW, SIDE_VIEW }
+
 public class GetOutOfBed_MouseMovement : MonoBehaviour
 {
     // when the player wins, these events are called
     public delegate void Won();
     public static event Won OnWon;
 
-    [SerializeField] Animator lumiAnim;
+    [SerializeField] GameObject topView, sideView;
+    [SerializeField] Animator roanAnimTop, roanAnimSide, lumiAnimTop, lumiAnimSide;
     [SerializeField] float maxNoiseLevel = 1, movementNoise = .05f, noiseDecreaseRate = .5f;
 
-    Animator roanAnim;
+    Animator roanAnim, lumiAnim;
     GameState currentGameState = GameState.WAKING_UP;
+    POV currentPOV = POV.TOP_VIEW;
     float mouseMovement, noiseLevel;
     int jostles;
     bool canJostle = true;
 
     private void Start()
     {
-        roanAnim = GetComponent<Animator>();
+        roanAnim = roanAnimTop;
+        lumiAnim = lumiAnimTop;
     }
 
     private void Update()
@@ -64,8 +70,18 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
         }
         #endregion
 
+        // when Roan is about halfway out of bed, switch camera angles
+        if (roanAnim.GetCurrentAnimatorStateInfo(0).IsName("Roan_GetOutOfBed03"))
+        {
+            roanAnim = roanAnimSide;
+            lumiAnim = lumiAnimSide;
+
+            topView.SetActive(false);
+            sideView.SetActive(true);
+        }
+
         // if the empty "Roan_OutOfBed" animation is triggered, Roan is out of bed and the minigame is over
-        if (roanAnim.GetCurrentAnimatorStateInfo(0).IsName("Roan_OutOfBed"))
+        else if (roanAnim.GetCurrentAnimatorStateInfo(0).IsName("Roan_OutOfBed"))
         {
             currentGameState = GameState.WON;
 

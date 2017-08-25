@@ -174,9 +174,13 @@ public class DreamManager_Cradle : MonoBehaviour
         {
             if (links.Count == 2)
             {
-                Debug.Log(links.Count);
+                if (closestNodeText == dreamTextNodes[0] || closestNodeText == dreamTextNodes[1])
+                {
+                    if (closestNodeText == dreamTextNodes[0]) StartCoroutine(DeactivateNode(dreamTextNodes[1].transform));
+                    if (closestNodeText == dreamTextNodes[1]) StartCoroutine(DeactivateNode(dreamTextNodes[0].transform));
 
-                if (closestNodeText == dreamTextNodes[0] || closestNodeText == dreamTextNodes[1]) return true;
+                    return true;
+                }
                 else return false;
             }
             else if (links.Count == 1)
