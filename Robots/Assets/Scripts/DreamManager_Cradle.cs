@@ -16,6 +16,7 @@ public class DreamManager_Cradle : MonoBehaviour
 
     Transform nodeBeingFocusedOn, nodeToDisappear;
     Vector3 mousePosition;
+    List<StoryLink> links = new List<StoryLink>();
     float mouseMovement;
     int focalNodeIndex, counter;
     bool canControlMovement = true, canFadeText, dreamComplete;
@@ -57,11 +58,11 @@ public class DreamManager_Cradle : MonoBehaviour
         //dreamTextNodes[focalNodeIndex].text = "";
         dreamTextNodes[focalNodeIndex].text += "\n" + output.Text;
 
-        List<StoryLink> currentLinks = new List<StoryLink>();
+        links.Clear();
         foreach (StoryLink o in story.GetCurrentLinks())
         {
-            currentLinks.Add(o);
-            if(currentLinks.Count > 1)
+            links.Add(o);
+            if(links.Count > 1)
             {
                 dreamTextNodes[focalNodeIndex + 2].text = o.Text;
             }
@@ -168,26 +169,17 @@ public class DreamManager_Cradle : MonoBehaviour
     bool ClosestNodeIsNextNodeInStory()
     {
         TextMesh closestNodeText = FindClosestNode().GetComponent<TextMesh>();
-
-        // if the closest node is the first node in the list (they get deleted from this list
-        // as the player finishes reading them), return true
-        // TODO this does not accommodate branching
-        //if (closestNodeText == dreamTextNodes[0]) return true;
-        //else return false;
-
-        List<StoryLink> currentLinks = new List<StoryLink>();
-        foreach (StoryLink o in story.GetCurrentLinks())
+        
+        foreach (StoryLink o in links)
         {
-            currentLinks.Add(o);
-            
-            if (currentLinks.Count == 2)
+            if (links.Count == 2)
             {
-                Debug.Log(currentLinks.Count);
+                Debug.Log(links.Count);
 
                 if (closestNodeText == dreamTextNodes[0] || closestNodeText == dreamTextNodes[1]) return true;
                 else return false;
             }
-            else if (currentLinks.Count == 1)
+            else if (links.Count == 1)
             {
                 if (closestNodeText == dreamTextNodes[0]) return true;
                 else return false;
