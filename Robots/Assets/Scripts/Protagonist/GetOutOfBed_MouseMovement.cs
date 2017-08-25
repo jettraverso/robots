@@ -71,7 +71,7 @@ public class GetOutOfBed_MouseMovement : MonoBehaviour
         #endregion
 
         // when Roan is about halfway out of bed, switch camera angles
-        if (roanAnim.GetCurrentAnimatorStateInfo(0).IsName("Roan_GetOutOfBed03"))
+        if (roanAnim.GetCurrentAnimatorStateInfo(0).IsName("Roan_GetOutOfBed04"))
         {
             roanAnim = roanAnimSide;
             lumiAnim = lumiAnimSide;
