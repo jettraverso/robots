@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cradle;
+using System;
 
 public class DreamManager_Cradle : MonoBehaviour
 {
@@ -60,6 +61,10 @@ public class DreamManager_Cradle : MonoBehaviour
         foreach (StoryLink o in story.GetCurrentLinks())
         {
             currentLinks.Add(o);
+            if(currentLinks.Count > 1)
+            {
+                dreamTextNodes[focalNodeIndex + 2].text = o.Text;
+            }
             if (dreamTextNodes[focalNodeIndex + 1].text == "*")
                 dreamTextNodes[focalNodeIndex + 1].text = o.Text;
             //else if (dreamTextNodes[focalNodeIndex + 2].text == "*")
@@ -167,8 +172,34 @@ public class DreamManager_Cradle : MonoBehaviour
         // if the closest node is the first node in the list (they get deleted from this list
         // as the player finishes reading them), return true
         // TODO this does not accommodate branching
-        if (closestNodeText == dreamTextNodes[0]) return true;
-        else return false;
+        //if (closestNodeText == dreamTextNodes[0]) return true;
+        //else return false;
+
+        List<StoryLink> currentLinks = new List<StoryLink>();
+        foreach (StoryLink o in story.GetCurrentLinks())
+        {
+            currentLinks.Add(o);
+            
+            if (currentLinks.Count == 2)
+            {
+                Debug.Log(currentLinks.Count);
+
+                if (closestNodeText == dreamTextNodes[0] || closestNodeText == dreamTextNodes[1]) return true;
+                else return false;
+            }
+            else if (currentLinks.Count == 1)
+            {
+                if (closestNodeText == dreamTextNodes[0]) return true;
+                else return false;
+            }
+            else
+            {
+                Debug.Log("WHOOPS TOO MANY NODES");
+                return false;
+            }
+        }
+
+        return false;
     }
 
     Transform FindClosestNode()
