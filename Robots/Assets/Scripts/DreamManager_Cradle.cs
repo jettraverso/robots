@@ -38,7 +38,9 @@ public class DreamManager_Cradle : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         // boilerplate Cradle event for making stuff happen when text is processed
-        story.OnOutput += story_OnOutput; 
+        story.OnOutput += story_OnOutput;
+
+        story.OnPassageEnter += passage_Enter;
 
         story.Begin();
     }
@@ -60,12 +62,12 @@ public class DreamManager_Cradle : MonoBehaviour
             currentLinks.Add(o);
             if (dreamTextNodes[focalNodeIndex + 1].text == "*")
                 dreamTextNodes[focalNodeIndex + 1].text = o.Text;
+            //else if (dreamTextNodes[focalNodeIndex + 2].text == "*")
+            //    dreamTextNodes[focalNodeIndex + 2].text = o.Text;
         }
-
-
     }
 
-    void clearText()
+    void passage_Enter(StoryPassage passage)
     {
         nodeBeingFocusedOn.GetComponent<TextMesh>().text = "";
     }
@@ -121,8 +123,6 @@ public class DreamManager_Cradle : MonoBehaviour
 
     void FocusOnText()
     {
-        //print("should only be called when the player can focus on text");
-
         // the node being focused on is the closest one to this gameObject
         nodeBeingFocusedOn = FindClosestNode().transform;
 
@@ -132,7 +132,10 @@ public class DreamManager_Cradle : MonoBehaviour
         // when the node is being focused on, that is the same as clicking on its link in Twine
         // TODO this is problematic, because it changes the link text when the node is focused on
         string nodeText = nodeBeingFocusedOn.GetComponent<TextMesh>().text;
-        if (story.HasLink(nodeText)) story.DoLink(nodeText);
+        if (story.HasLink(nodeText))
+        {
+            story.DoLink(nodeText);
+        }
 
         // give the player enough time to stop moving the mouse, so that they can read the passage
         // without accidentally skipping it
