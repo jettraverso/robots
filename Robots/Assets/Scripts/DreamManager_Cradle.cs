@@ -16,7 +16,7 @@ public class DreamManager_Cradle : MonoBehaviour
     Transform nodeBeingFocusedOn, nodeToDisappear;
     Vector3 mousePosition;
     float mouseMovement;
-    int focalNodeIndex;
+    int focalNodeIndex, counter;
     bool canControlMovement = true, canFadeText, dreamComplete;
 
     private void Start()
@@ -38,7 +38,7 @@ public class DreamManager_Cradle : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         // boilerplate Cradle event for making stuff happen when text is processed
-        story.OnOutput += story_OnOutput;
+        story.OnOutput += story_OnOutput; 
 
         story.Begin();
     }
@@ -51,58 +51,24 @@ public class DreamManager_Cradle : MonoBehaviour
 
     void story_OnOutput(StoryOutput output)
     {
-        if (output is StoryText)
-        {
-            dreamTextNodes[0].text += output.Text;
-
-        }
-
+        //dreamTextNodes[focalNodeIndex].text = "";
+        dreamTextNodes[focalNodeIndex].text += "\n" + output.Text;
 
         List<StoryLink> currentLinks = new List<StoryLink>();
         foreach (StoryLink o in story.GetCurrentLinks())
         {
             currentLinks.Add(o);
+            if (dreamTextNodes[focalNodeIndex + 1].text == "*")
+                dreamTextNodes[focalNodeIndex + 1].text = o.Text;
         }
 
-            // print the current story text to the node being focused on
-            if (output is StoryText) nodeBeingFocusedOn.GetComponent<TextMesh>().text = output.Text;
 
-        // print the same link text to every other node
-        // TODO this treats all links as the same - we need to differentiate between the links,
-        // possibly with a switch statement that checks for the link's name or ID
-        // (the function story.GetPassage and the dictionary story.Passages weren't working for me
-        // when I tried to fill each node's text field with the text of an individual passage)
-        else if (output is StoryLink)
-        {
-
-            //for (int i = 0; i < currentLinks.Count; i++)
-            //{
-            //    dreamTextNodes[i + 1].text = currentLinks[i].Text;
-            //}
-
-            //foreach (TextMesh t in dreamTextNodes)
-            //{
-
-            //        //if (t.transform != nodeBeingFocusedOn)
-            //        //{
-            //        //    t.text = output.Text;
-            //        //}
-            //}
-
-            //Cycle through available links -> foreach storyLink
-            //foreach (StoryOutput o in story.GetCurrentLinks())
-            //{
-            //    //proof that o is all current links
-            //    Debug.Log(o.Text);
-
-            //    //attach to text mesh
-
-            //}
-
-        }
     }
 
-    
+    void clearText()
+    {
+        nodeBeingFocusedOn.GetComponent<TextMesh>().text = "";
+    }
 
     void UpdateMovement()
     {
@@ -155,7 +121,7 @@ public class DreamManager_Cradle : MonoBehaviour
 
     void FocusOnText()
     {
-        print("should only be called when the player can focus on text");
+        //print("should only be called when the player can focus on text");
 
         // the node being focused on is the closest one to this gameObject
         nodeBeingFocusedOn = FindClosestNode().transform;
